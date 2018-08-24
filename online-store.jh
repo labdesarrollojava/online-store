@@ -18,7 +18,7 @@ entity Customer (customer) {
   firstName String required,
   lastName String required,
   gender Gender required,
-  email String required,
+  email String required, //pattern(^[^@\s]+@[^@\s]+\.[^@\s]+$),
   phone String required,
   addressLine1 String required,
   addressLine2 String,
