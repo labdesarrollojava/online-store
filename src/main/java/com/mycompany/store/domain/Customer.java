@@ -42,7 +42,6 @@ public class Customer implements Serializable {
     private Gender gender;
 
     @NotNull
-    @Pattern(regexp = "^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$")
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -65,7 +64,8 @@ public class Customer implements Serializable {
     @Column(name = "country", nullable = false)
     private String country;
 
-    @OneToOne
+    @OneToOne(optional = false)
+    @NotNull
     @JoinColumn(unique = true)
     private User user;
 
