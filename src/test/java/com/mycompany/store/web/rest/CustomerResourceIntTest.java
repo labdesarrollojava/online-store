@@ -3,6 +3,7 @@ package com.mycompany.store.web.rest;
 import com.mycompany.store.StoreApp;
 
 import com.mycompany.store.domain.Customer;
+import com.mycompany.store.domain.User;
 import com.mycompany.store.repository.CustomerRepository;
 import com.mycompany.store.service.CustomerService;
 import com.mycompany.store.web.rest.errors.ExceptionTranslator;
@@ -49,8 +50,8 @@ public class CustomerResourceIntTest {
     private static final Gender DEFAULT_GENDER = Gender.MALE;
     private static final Gender UPDATED_GENDER = Gender.FEMALE;
 
-    private static final String DEFAULT_EMAIL = "`@u.ZP";
-    private static final String UPDATED_EMAIL = "u@-X.^!";
+    private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
+    private static final String UPDATED_EMAIL = "BBBBBBBBBB";
 
     private static final String DEFAULT_PHONE = "AAAAAAAAAA";
     private static final String UPDATED_PHONE = "BBBBBBBBBB";
@@ -117,6 +118,11 @@ public class CustomerResourceIntTest {
             .addressLine2(DEFAULT_ADDRESS_LINE_2)
             .city(DEFAULT_CITY)
             .country(DEFAULT_COUNTRY);
+        // Add required entity
+        User user = UserResourceIntTest.createEntity(em);
+        em.persist(user);
+        em.flush();
+        customer.setUser(user);
         return customer;
     }
 
